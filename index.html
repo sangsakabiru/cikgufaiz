@@ -9,6 +9,7 @@
 </head>
 <body>
 
+    <!-- ================= HALAMAN 1: SPLASH SCREEN ================= -->
     <section id="page-splash" class="page active">
         <div class="splash-card animate-fade-in">
             <div class="eco-logo">♻️</div>
@@ -22,6 +23,7 @@
         </div>
     </section>
 
+    <!-- ================= HALAMAN 2: LOGIN MURID ================= -->
     <section id="page-login" class="page">
         <div class="container-box">
             <div class="box-header">
@@ -42,6 +44,7 @@
         </div>
     </section>
 
+    <!-- ================= HALAMAN 3: HOME (MENU UTAMA) ================= -->
     <section id="page-home" class="page-scroll">
         <nav class="navbar">
             <div class="nav-brand">♻️ EdTech Kitar Semula</div>
@@ -65,10 +68,10 @@
                     <h3>Pembelajaran</h3>
                     <p>Nota padat, Pengurusan Grafik & Alat Berfikir</p>
                 </div>
-                <div class="menu-item card-permainan" onclick="alert('Fasa 2: 7 Jenis Permainan Interaktif akan diaktifkan sebaik sahaja struktur ini siap!')">
+                <div class="menu-item card-permainan" onclick="navigateTo('page-pilihan-game')">
                     <div class="menu-icon">🎮</div>
                     <h3>Permainan 3R</h3>
-                    <p>7 kuiz & game mencabar minda (Kahoot style)</p>
+                    <p>Uji minda dengan Aktiviti Game Interaktif</p>
                 </div>
                 <div class="menu-item card-leaderboard" onclick="navigateTo('page-leaderboard')">
                     <div class="menu-icon">🏆</div>
@@ -89,6 +92,7 @@
         </div>
     </section>
 
+    <!-- ================= HALAMAN 4: NOTA PEMBELAJARAN ================= -->
     <section id="page-pembelajaran" class="page-scroll">
         <div class="content-header">
             <button class="btn-back" onclick="navigateTo('page-home')">← Kembali</button>
@@ -109,6 +113,96 @@
         </div>
     </section>
 
+    <!-- ================= HALAMAN: MENU PILIHAN PERMAINAN ================= -->
+    <section id="page-pilihan-game" class="page-scroll">
+        <div class="content-header">
+            <button class="btn-back" onclick="navigateTo('page-home')">← Menu Utama</button>
+            <h2>🎮 Hub Permainan Kitar Semula</h2>
+        </div>
+        <div class="main-content">
+            <div class="game-selector-grid">
+                <div class="game-select-card" onclick="startGame(1)">
+                    <span class="game-num">G1</span>
+                    <h4>Aktiviti 1: Peta Minda (Drag & Drop)</h4>
+                    <p>Seret idea amalan 3R ke tempat yang betul.</p>
+                </div>
+                <div class="game-select-card" onclick="startGame(2)">
+                    <span class="game-num">G2</span>
+                    <h4>Aktiviti 2: Pengurusan Grafik (Klik & Isih)</h4>
+                    <p>Asingkan sisa kitar semula vs sisa organik.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GAME 1: DRAG & DROP ================= -->
+    <section id="game-1" class="page-scroll">
+        <div class="content-header">
+            <button class="btn-back" onclick="navigateTo('page-pilihan-game')">← Keluar Game</button>
+            <h2>Aktiviti 1: Peta Minda Kitar Semula</h2>
+        </div>
+        <div class="main-content">
+            <div class="game-container">
+                <p class="game-instruction"><strong>Arahan:</strong> Seret (Drag) pilihan jawapan di bawah dan lepaskan (Drop) ke dalam kotak hijau di bawah.</p>
+                
+                <div class="drag-zone" id="drag-items-g1">
+                    <div class="drag-item" draggable="true" id="item1" data-valid="true">Faedah Kitar Semula</div>
+                    <div class="drag-item" draggable="true" id="item2" data-valid="false">Bakar Sampah Terbuka</div>
+                    <div class="drag-item" draggable="true" id="item3" data-valid="true">Amalan 3R (Reduce, Reuse)</div>
+                    <div class="drag-item" draggable="true" id="item4" data-valid="false">Buang Sisa ke Sungai</div>
+                    <div class="drag-item" draggable="true" id="item5" data-valid="true">Jenis Bahan Kitar Semula</div>
+                </div>
+
+                <div class="drop-zone" id="drop-target-g1">
+                    <h3>♻️ Idea Amalan Kitar Semula</h3>
+                    <p class="drop-placeholder">Letakkan jawapan betul di sini</p>
+                </div>
+
+                <button class="btn-primary" onclick="semakGame1()">Semak Jawapan</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GAME 2: KLIK & ISIH ================= -->
+    <section id="game-2" class="page-scroll">
+        <div class="content-header">
+            <button class="btn-back" onclick="navigateTo('page-pilihan-game')">← Keluar Game</button>
+            <h2>Aktiviti 2: Pengurusan Grafik (Pengelasan Sisa)</h2>
+        </div>
+        <div class="main-content">
+            <div class="game-container text-center">
+                <p class="game-instruction"><strong>Arahan:</strong> Klik butang kategori yang betul di bawah bagi bahan yang dipaparkan.</p>
+                
+                <div class="sorting-wrapper">
+                    <div class="item-to-sort" id="current-sort-item" data-type="recycle">Botol Plastik</div>
+                    
+                    <div class="sort-targets">
+                        <div class="sort-box" onclick="sortItem('recycle')">
+                            <h4>♻️ Boleh Kitar Semula</h4>
+                            <div id="recycle-list" class="sorted-list"></div>
+                        </div>
+                        <div class="sort-box" onclick="sortItem('organic')">
+                            <h4>🍂 Sisa Organik / Lain</h4>
+                            <div id="organic-list" class="sorted-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= HALAMAN SKOR KEPUTUSAN ================= -->
+    <section id="page-result" class="page">
+        <div class="splash-card animate-fade-in">
+            <div class="eco-logo">🎉</div>
+            <h2>Tahniah, Aktiviti Selesai!</h2>
+            <p>Satu rekod markah telah disimpan dalam sistem memori.</p>
+            <div class="score-display">Skor Anda: <span id="game-score-text">0</span></div>
+            <button class="btn-primary" onclick="navigateTo('page-home')">Kembali ke Menu Utama</button>
+        </div>
+    </section>
+
+    <!-- ================= HALAMAN 5: LEADERBOARD ================= -->
     <section id="page-leaderboard" class="page-scroll">
         <div class="content-header">
             <button class="btn-back" onclick="navigateTo('page-home')">← Kembali</button>
@@ -117,23 +211,17 @@
         <div class="main-content">
             <table class="styled-table">
                 <thead>
-                    <tr>
-                        <th>Kedudukan</th>
-                        <th>Nama Murid</th>
-                        <th>Kelas</th>
-                        <th>Markah</th>
-                        <th>Masa Amatan</th>
-                    </tr>
+                    <tr><th>Kedudukan</th><th>Nama Murid</th><th>Kelas</th><th>Markah</th><th>Masa</th></tr>
                 </thead>
                 <tbody>
                     <tr><td>🥇 1</td><td>Ahmad Firdaus</td><td>4 Cekal</td><td>100%</td><td>1m 45s</td></tr>
                     <tr><td>🥈 2</td><td>Siti Nurhaliza</td><td>4 Cekal</td><td>95%</td><td>1m 58s</td></tr>
-                    <tr><td>🥉 3</td><td>Arvin Raj</td><td>4 Bijak</td><td>90%</td><td>2m 10s</td></tr>
                 </tbody>
             </table>
         </div>
     </section>
 
+    <!-- ================= HALAMAN 6: BIODATA ================= -->
     <section id="page-biodata" class="page-scroll">
         <div class="content-header">
             <button class="btn-back" onclick="navigateTo('page-home')">← Kembali</button>
@@ -153,13 +241,14 @@
                     </table>
                     <div class="appreciation-box">
                         <h5>💝 Penghargaan</h5>
-                        <p>Setinggi-tinggi penghargaan diucapkan kepada semua pensyarah IPGKRM, ibu, bapa, serta rakan-rakan seperjuangan yang memberikan sokongan moral sepanjang penghasilan projek akademik interaktif ini.</p>
+                        <p>Setinggi-tinggi penghargaan diucapkan kepada semua pensyarah IPGKRM, ibu, bapa, serta rakan-rakan seperjuangan.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ================= HALAMAN 7: DASHBOARD GURU ================= -->
     <section id="page-dashboard" class="page-scroll">
         <div class="content-header">
             <button class="btn-back" onclick="navigateTo('page-home')">← Kembali</button>
@@ -167,17 +256,15 @@
         </div>
         <div class="main-content">
             <div class="summary-cards">
-                <div class="s-card"><h4>3</h4><p>Murid Menjawab</p></div>
-                <div class="s-card"><h4>95%</h4><p>Purata Skor Kelas</p></div>
+                <div class="s-card"><h4>1</h4><p>Murid Menjawab</p></div>
+                <div class="s-card"><h4>100%</h4><p>Purata Skor Kelas</p></div>
             </div>
             <table class="styled-table font-small">
                 <thead>
-                    <tr>
-                        <th>Nama</th><th>Kelas</th><th>G1</th><th>G2</th><th>G3</th><th>G4</th><th>G5</th><th>G6</th><th>G7</th><th>Jumlah</th><th>Masa</th>
-                    </tr>
+                    <tr><th>Nama</th><th>Kelas</th><th>G1</th><th>G2</th><th>G3</th><th>Jumlah</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>Ahmad Firdaus</td><td>4 Cekal</td><td>5/5</td><td>4/4</td><td>3/3</td><td>5</td><td>6/6</td><td>Sesuai</td><td>3/3</td><td>100%</td><td>10:22am</td></tr>
+                    <tr><td>Ahmad Firdaus</td><td>4 Cekal</td><td>3/3</td><td>4/4</td><td>-</td><td>100%</td></tr>
                 </tbody>
             </table>
         </div>
